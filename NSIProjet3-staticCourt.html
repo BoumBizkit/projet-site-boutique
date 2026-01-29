@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <title>Gérer un budget</title>
+  <meta charset="UTF-8"/> 
+  <link rel="stylesheet" type="text/css" href="style/NSIProjet3.css" />   
+
+  <!-- pour utiliser l'un des  fichiers de données fournis -->
+   <!-- <script src="data/catalog1.js"></script> -->
+   <!-- <script src="data/catalog2.js"></script> -->
+  
+  <!-- <script src="scripts/NSIProjet3.js"></script>  -->
+
+</head>
+
+<body>
+
+  <h1>Une boutique en ligne</h1>
+
+  <h2>Le budget pour la classe est de 400 euros.</h2>
+
+	<div id="boutique">
+		<div class="produit" id="0-product">
+			<h4>Nounours marron</h4>
+			<figure><img src="images/nounours1.jpg" alt="Nounours marron"></figure>
+			<div class="description">un joli nounours marron avec un foulard</div>
+			<div class="prix">35</div>
+			<div class="controle">
+				<input id="0-qte" step="1" min="0" max="9" type="number" value="0"></input>
+				<button class="commander" id="0-order"></button>
+			</div>
+		</div><!--
+	 --><div class="produit" id="1-product">
+			<h4>Nounours blanc</h4>
+			<figure><img src="images/nounours2.jpg" alt="Nounours blanc"></figure>
+			<div class="description">un ours blanc tout doux</div>
+			<div class="prix">42</div>
+			<div class="controle">
+				<input id="1-qte" step="1" min="0" max="9" type="number" value="0"></input>
+				<button class="commander" id="1-order"></button>
+			</div>
+		</div><!--
+	 --><div class="produit" id="2-product">
+			<h4>Peluche Ane gris</h4><figure>
+			<img src="images/ane.jpg" alt="Peluche Ane gris"></figure>
+			<div class="description">joli petit ane gris</div>
+			<div class="prix">15</div>
+			<div class="controle">
+				<input id="2-qte" step="1" min="0" max="9" type="number" value="0"></input>
+				<button class="commander" id="2-order" ></button>
+			</div>
+		</div><!--
+	 --><div class="produit" id="3-product">
+			<h4>Pokemon Bulbizarre</h4>
+			<figure><img src="images/bulbizarre.jpg" alt="Pokemon Bulbizarre"></figure>
+			<div class="description">Pokemon Bulbizarre</div>
+			<div class="prix">25</div>
+			<div class="controle">
+				<input id="3-qte" step="1" min="0" max="9" type="number" value="0"></input>
+				<button class="commander" id="3-order" style="opacity: 0.25;"></button>
+			</div>
+		</div><!--
+		J'ai enlevé les produits n°4 à 14 pour que que ce ne soit pas trop répétitif
+
+
+	 --><div class="produit" id="15-product">
+			<h4>Pokemon Salameche</h4>
+			<figure><img src="images/salameche.jpg" alt="Pokemon Salameche"></figure>
+			<div class="description">Pokemon Salameche</div>
+			<div class="prix">25</div>
+			<div class="controle">
+				<input id="15-qte" step="1" min="0" max="9" type="number" value="0"></input>
+				<button class="commander" id="15-order"></button>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="panier">
+		<input id="filter" placeholder="rechercher des produits...">							
+		<div id="total">Total du panier&nbsp;: <span id="montant">190</span></div>	
+		<div class="achats">
+			<div class="achat" id="2-achat">
+				<figure><img src="images/ane.jpg" alt="Peluche Ane gris"></figure>
+				<h4>joli petit ane gris</h4>
+				<div class="quantite">3</div>
+				<div class="prix">15</div><!--
+			 --><div class="controle">
+					<button class="retirer" id="2-remove"></button>
+				</div>
+			</div>
+			<div class="achat" id="0-achat">
+				<figure><img src="images/nounours1.jpg" alt="Nounours marron"></figure>
+				<h4>un joli nounours marron avec un foulard</h4>
+				<div class="quantite">2</div>
+				<div class="prix">35</div><!--
+			 --><div class="controle">
+					<button class="retirer" id="0-remove"></button>
+				</div>
+			</div>
+			<div class="achat" id="3-achat">
+				<figure><img src="images/bulbizarre.jpg" alt="Pokemon Bulbizarre"></figure>
+				<h4>Pokemon Bulbizarre</h4>
+				<div class="quantite">3</div>
+				<div class="prix">25</div><!--
+			 --><div class="controle">
+					<button class="retirer" id="3-remove"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
