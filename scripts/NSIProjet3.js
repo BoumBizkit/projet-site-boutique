@@ -119,7 +119,11 @@ var createOrderControlBlock = function (index) {
 * TODO : write the correct code
 */
 var createFigureBlock = function (product) {
-	// this is absolutely not the correct answer !
-	// TODO 
-	return createBlock("figure", "");
+	var control=document.createElement("figure");
+	control.className="controle";
+	var image=document.createElement("img");
+	
+	control.appendChild(image);
+	
+	return control;
 }
