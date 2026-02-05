@@ -20,6 +20,9 @@ var init = function () {
 	
 	// TODO : add other initializations to achieve if you think it is required
 }
+var filter = function() {
+	alert ("Coucou");
+}
 window.addEventListener("load", init);
 
 
