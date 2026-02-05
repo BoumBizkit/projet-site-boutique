@@ -35,6 +35,7 @@ var filtrer = function() {
 			name.style.display="inline-block";
 		}
 }
+}
 
 // usefull functions
 
