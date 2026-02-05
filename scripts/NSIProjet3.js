@@ -122,7 +122,8 @@ var createFigureBlock = function (product) {
 	var control=document.createElement("figure");
 	control.className="controle";
 	var image=document.createElement("img");
-	
+	image.src=product.image;
+	image.alt=product.name;
 	control.appendChild(image);
 	
 	return control;
