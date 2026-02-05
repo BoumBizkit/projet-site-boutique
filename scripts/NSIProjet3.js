@@ -14,7 +14,7 @@ var total = 0;
 
 // function called when page is loaded, it performs initializations 
 var init = function () {
-	var 
+	var document.getElementById("filter") 
 		addEventListener("keyup",filter)
 	createShop();
 	
