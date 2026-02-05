@@ -23,7 +23,9 @@ var init = function () {
 window.addEventListener("load", init);
 
 var filtrer = function() {
-	alert("Coucou");
+	var filtre=this.value;
+	var name=document.getElementById("product.name");
+	if (name.indexOf()
 }
 
 // usefull functions
