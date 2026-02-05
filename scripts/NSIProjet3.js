@@ -28,11 +28,12 @@ var filtrer = function() {
 		var productName=catalog[i].name;
 		var index=i.toString()+"-product";
 		var name=document.getElementById(index);
+		var block= i + "-" + productIdKey
 		if (productName.indexOf(filtre)==(-1)) {
-			name.style.display="none";
+			block.style.display="none";
 		}
 		else {
-			name.style.display="inline-block";
+			block.style.display="inline-block";
 		}
 }
 
