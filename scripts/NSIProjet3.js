@@ -24,8 +24,13 @@ window.addEventListener("load", init);
 
 var filtrer = function() {
 	var filtre=this.value;
-	var name=document.getElementById("product.name");
-	if (name.indexOf()
+	for(var i = 0; i < catalog.length; i++) {
+		var productName=catalog[i].name;
+		var index=i.toString()+"-product";
+		var name=document.getElementById(index);
+		if (productName.indexOf(filtre)==(-1)) {
+			
+		}
 }
 
 // usefull functions
