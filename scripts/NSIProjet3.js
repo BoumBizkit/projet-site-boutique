@@ -15,14 +15,14 @@ var total = 0;
 // function called when page is loaded, it performs initializations 
 var init = function () {
 	var filtre=document.getElementById("filter");
-	filtre.addEventListener("keyup",filter);
+	filtre.addEventListener("keyup",filtrer);
 	createShop();
 	
 	// TODO : add other initializations to achieve if you think it is required
 }
 window.addEventListener("load", init);
 
-var filter = function() {
+var filtrer = function() {
 	alert("Coucou");
 }
 
