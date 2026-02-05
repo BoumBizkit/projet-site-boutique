@@ -29,10 +29,10 @@ var filtrer = function() {
 		var index=i.toString()+"-product";
 		var name=document.getElementById(index);
 		if (productName.indexOf(filtre)==(-1)) {
-			productName.style.display="none";
+			name.style.display="none";
 		}
 		else {
-			productName.style.display="inline-block";
+			name.style.display="inline-block";
 		}
 }
 
