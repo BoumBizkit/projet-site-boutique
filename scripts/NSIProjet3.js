@@ -39,7 +39,10 @@ var filtrer = function() {
 
 var gererChange = function() {
 	var identifiant = this.id;
-	alert(identifiant);
+	qte= Number(identifiant.value)
+
+	if (qte
+	
 }
 
 // usefull functions
