@@ -38,8 +38,9 @@ var filtrer = function() {
 }
 
 var gererChange = function() {
-	var identifiant = this.id
-	alert(identifiant)
+	var identifiant = this.id;
+	alert(identifiant);
+}
 
 // usefull functions
 
