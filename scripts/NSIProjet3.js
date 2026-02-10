@@ -38,7 +38,8 @@ var filtrer = function() {
 }
 
 var gererChange = function() {
-	var qte = this.
+	var identifiant = this.id
+	alert(identifiant)
 
 // usefull functions
 
