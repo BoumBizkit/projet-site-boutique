@@ -40,8 +40,8 @@ var filtrer = function() {
 var gererChange = function() {
 	var identifiant = this.id;
 	qte= Number(identifiant.value)
-
-	if (qte
+	if (qte>9){
+		qte=0}
 	
 }
 
