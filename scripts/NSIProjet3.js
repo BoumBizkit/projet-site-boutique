@@ -39,10 +39,12 @@ var filtrer = function() {
 
 var gererChange = function() {
 	var identifiant = this.id;
-	qte= Number(this.value)
+	qte= Number(this.value);
 	if (qte>9){
-		qte=0}
-	
+		qte=0;
+		this.value=0;
+	alert("coucou")
+	}	
 }
 
 // usefull functions
