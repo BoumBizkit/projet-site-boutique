@@ -37,6 +37,9 @@ var filtrer = function() {
 }
 }
 
+var gererChange = function() {
+	var qte = this.
+
 // usefull functions
 
 /*
@@ -111,6 +114,8 @@ var createOrderControlBlock = function (index) {
 	input.value = "0";
 	input.min = "0";
 	input.max = MAX_QTY.toString();
+
+	input.addEventListener("change",gererChange);
 	// add input to control as its child
 	control.appendChild(input);
 	
