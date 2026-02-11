@@ -45,6 +45,12 @@ var gererChange = function() {
 		this.value=0;
 	alert("coucou")
 	}	
+	if (qte==0) {
+		opacity=0.25;
+	}
+	else {
+		opacity=1;
+	}
 }
 
 // usefull functions
