@@ -45,7 +45,9 @@ var gererChange = function() {
 		this.value=0;
 	alert("coucou");
 	}	
-	var bouton=identifiant[0]+ "-" + orderIdKey
+	var index = identifiant.split("-")[0];
+
+	var bouton = document.getElementById(index + "-" + orderIdKey);
 	if (qte==0) {
 		bouton.style.opacity=0.25;
 	}
