@@ -39,17 +39,18 @@ var filtrer = function() {
 
 var gererChange = function() {
 	var identifiant = this.id;
-	qte= Number(this.value);
+	var qte= Number(this.value);
 	if (qte>9){
 		qte=0;
 		this.value=0;
 	alert("coucou")
 	}	
+	var bouton=identifiant[0]+ "-" + orderIdKey
 	if (qte==0) {
-		opacity=0.25;
+		bouton.style.opacity=0.25;
 	}
 	else {
-		opacity=1;
+		bouton.style.opacity=1;
 	}
 }
 
