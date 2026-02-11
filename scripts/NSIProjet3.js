@@ -43,7 +43,7 @@ var gererChange = function() {
 	if (qte>9){
 		qte=0;
 		this.value=0;
-	alert("coucou")
+	alert("coucou");
 	}	
 	var bouton=identifiant[0]+ "-" + orderIdKey
 	if (qte==0) {
