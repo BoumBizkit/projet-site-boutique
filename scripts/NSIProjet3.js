@@ -43,7 +43,6 @@ var gererChange = function() {
 	if (qte>9){
 		qte=0;
 		this.value=0;
-	alert("coucou");
 	}	
 	var index = identifiant.split("-")[0];
 
