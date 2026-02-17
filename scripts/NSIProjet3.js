@@ -140,19 +140,68 @@ var createOrderControlBlock = function (index) {
 	button.id = index + "-" + orderIdKey;
 	// add button to control as its child
 	control.appendChild(button);
+	// fonctionnement du bouton
+	button.addEventListener("click", gererCommande);
 	
+// creation de div.achat
+var createAchatBlock = function(product, index, qte) {
+    var achat = document.createElement("div");
+    achat.className = "achat";
+    achat.id = index + "-achat";
+		
+    // nom du produit
+    achat.appendChild(createBlock("span", product.name, "nom"));
+		
+    // quantité
+    var qty = createBlock("span", qte, "quantite");
+    qty.id = index + "-achat-qte";
+    achat.appendChild(qty);
+		
+    // prix total pour ce produit
+    var prix = createBlock("span",(product.price * qte),"prix");
+    prix.id = index + "-achat-prix";
+    achat.appendChild(prix);
+    return achat;
+}
+
+// gestion du clic (mise en panier)
+var gererCommande = function() {
+    var index = this.id.split("-")[0];
+    var input = document.getElementById(index + "-" + inputIdKey);
+    var qte = Number(input.value);
+	if (qte === 0) return;
+   	var product = catalog[index];
+   	var panier = document.getElementById("panier");
+   	var achatExistant = document.getElementById(index + "-achat");
+
+    // produit déjà dans le panier
+    if (achatExistant != null) {
+        var qteSpan = document.getElementById(index + "-achat-qte");
+        var prixSpan = document.getElementById(index + "-achat-prix");
+        var ancienneQte = Number(qteSpan.innerHTML);
+        var nouvelleQte = ancienneQte + qte;
+        qteSpan.innerHTML = nouvelleQte;
+        prixSpan.innerHTML =
+            (nouvelleQte * product.price);
+        total += product.price * qte;
+    }
+    // nouveau produit
+    else {
+        panier.appendChild(createAchatBlock(product, index, qte));
+        total += product.price * qte;
+    }
+    // mise à jour affichage total
+    document.getElementById("montant").innerHTML =
+        total;
+    // reset quantité
+    input.value = 0;
+    this.style.opacity = 0.25;
+}
 	// the built control div node is returned
 	return control;
 }
 
-
-/*
-* create and return the figure block for this product
-* see the static version of the project to know what the <figure> should be
-* @param product (product object) = the product for which the figure block is created
-*
-* TODO : write the correct code
-*/
+// créer le FigureBlock
 var createFigureBlock = function (product) {
 	var control=document.createElement("figure");
 	control.className="controle";
