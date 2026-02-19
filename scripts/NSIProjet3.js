@@ -161,8 +161,8 @@ var createAchatBlock = function(product, index, qte) {
     qty.id = index + "-achat-qte";
     achat.appendChild(qty);
 		
-    // prix total pour ce produit
-    var prix = createBlock("span",(product.price * qte),"prix");
+    // prix pour ce produit
+    var prix = createBlock("span",product.price,"prix");
     prix.id = index + "-achat-prix";
     achat.appendChild(prix);
     return achat;
