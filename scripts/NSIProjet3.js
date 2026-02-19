@@ -147,24 +147,41 @@ var createOrderControlBlock = function (index) {
 	return control;
 }
 
-// creation de div.achat
 var createAchatBlock = function(product, index, qte) {
     var achat = document.createElement("div");
     achat.className = "achat";
     achat.id = index + "-achat";
-		
-    // nom du produit
-    achat.appendChild(createBlock("span", product.name, "nom"));
-		
+
+    // image
+    var figure = document.createElement("figure");
+    var img = document.createElement("img");
+    img.src = product.image;
+    img.alt = product.name;
+    figure.appendChild(img);
+    achat.appendChild(figure);
+
+    // nom
+    achat.appendChild(createBlock("h4", product.name));
+
     // quantité
-    var qty = createBlock("span", qte, "quantite");
+    var qty = createBlock("div", qte, "quantite");
     qty.id = index + "-achat-qte";
     achat.appendChild(qty);
-		
-    // prix pour ce produit
-    var prix = createBlock("span",product.price,"prix");
+
+    // prix unitaire
+    var prix = createBlock("div", product.price, "prix");
     prix.id = index + "-achat-prix";
     achat.appendChild(prix);
+
+    // bouton retirer
+    var control = document.createElement("div");
+    control.className = "controle";
+    var btn = document.createElement("button");
+    btn.className = "retirer";
+    btn.id = index + "-remove";
+    control.appendChild(btn);
+    achat.appendChild(control);
+
     return achat;
 }
 
@@ -185,7 +202,6 @@ var gererCommande = function() {
         var ancienneQte = Number(qteSpan.innerHTML);
         var nouvelleQte = ancienneQte + qte;
         qteSpan.innerHTML = nouvelleQte;
-        prixSpan.innerHTML =
             (nouvelleQte * product.price);
         total += product.price * qte;
     }
