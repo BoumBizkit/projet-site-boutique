@@ -143,6 +143,10 @@ var createOrderControlBlock = function (index) {
 	// fonctionnement du bouton
 	button.addEventListener("click", gererCommande);
 	
+	// the built control div node is returned
+	return control;
+}
+
 // creation de div.achat
 var createAchatBlock = function(product, index, qte) {
     var achat = document.createElement("div");
@@ -196,9 +200,6 @@ var gererCommande = function() {
     // reset quantité
     input.value = 0;
     this.style.opacity = 0.25;
-}
-	// the built control div node is returned
-	return control;
 }
 
 // créer le FigureBlock
