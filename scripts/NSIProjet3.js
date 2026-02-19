@@ -175,7 +175,7 @@ var gererCommande = function() {
     var qte = Number(input.value);
 	if (qte === 0) return;
    	var product = catalog[index];
-   	var panier = document.getElementById("panier");
+   	var panier = document.getElementById("achats");
    	var achatExistant = document.getElementById(index + "-achat");
 
     // produit déjà dans le panier
