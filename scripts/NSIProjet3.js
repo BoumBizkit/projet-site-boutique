@@ -176,10 +176,11 @@ var createAchatBlock = function(product, index, qte) {
     // bouton retirer
     var control = document.createElement("div");
     control.className = "controle";
-    var btn = document.createElement("button");
-    btn.className = "retirer";
-    btn.id = index + "-remove";
-    control.appendChild(btn);
+    var suppr = document.createElement("button");
+    suppr.className = "retirer";
+    suppr.id = index + "-remove";
+	suppr.addEventListener("click", gererSuppression);
+    control.appendChild(suppr);
     achat.appendChild(control);
 
     return achat;
@@ -216,6 +217,20 @@ var gererCommande = function() {
     // reset quantité
     input.value = 0;
     this.style.opacity = 0.25;
+}
+
+var gererSuppression = function() {
+    var index = this.id.split("-")[0];
+    var achat = document.getElementById(index + "-achat");
+    
+    // soustraire du total
+    var qte = Number(document.getElementById(index + "-achat-qte").innerHTML);
+    var product = catalog[index];
+    total -= product.price * qte;
+    document.getElementById("montant").innerHTML = total;
+    
+    // supprimer le bloc du panier
+    achat.remove();
 }
 
 // créer le FigureBlock
