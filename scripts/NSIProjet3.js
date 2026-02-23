@@ -20,7 +20,8 @@ var init = function () {
 	filtre.addEventListener("keyup",filtrer);
 	// appelle la creation du shop
 	createShop();
-	
+	// modif du h2
+	document.getElementById("budget-titre").innerHTML = "Le budget pour la classe est de " + BUDGET_MAX + " euros.";
 }
 // appelle de l'init après le chargement de la page
 window.addEventListener("load", init);
