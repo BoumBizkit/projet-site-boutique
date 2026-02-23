@@ -1,27 +1,30 @@
-// YOUR NAME HERE
+// YNN ET MAYA L'ABEILLE TROUVEZ UN NOM FLEMME LA
 
-// === constants ===
+// === variables constantes (s'expliquent d'elles même) ===
 const MAX_QTY = 9;
 const productIdKey = "product";
 const orderIdKey = "order";
 const inputIdKey = "qte";
 
-// === global variables  ===
-// the total cost of selected products 
+// === variables globales  ===
+// cout total du panier
 var total = 0;
 
 
 
-// function called when page is loaded, it performs initializations 
+// initialisation du js
 var init = function () {
+	// définit filtre et met une écoute keyup sur "filter" qui appelle filtrer
 	var filtre=document.getElementById("filter");
 	filtre.addEventListener("keyup",filtrer);
+	// appelle la creation du shop
 	createShop();
 	
-	// TODO : add other initializations to achieve if you think it is required
 }
+// appelle de l'init après le chargement de la page
 window.addEventListener("load", init);
 
+// fonction filtrer du champs "filter" appelée par keyup
 var filtrer = function() {
 	var filtre=this.value;
 	for(var i = 0; i < catalog.length; i++) {
@@ -34,9 +37,10 @@ var filtrer = function() {
 		else {
 			name.style.display="inline-block";
 		}
-}
+	}
 }
 
+// gestion de la quantité max qu'on peut taper dans le champs "(id du produit)-qte" et opacité si quantité différente de 0
 var gererChange = function() {
 	var identifiant = this.id;
 	var qte= Number(this.value);
