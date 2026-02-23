@@ -1,4 +1,4 @@
-// YNN ET MAYA L'ABEILLE TROUVEZ UN NOM FLEMME LA
+// YANN ET MAYA L'ABEILLE TROUVEZ UN NOM FLEMME LA
 
 // === variables constantes (s'expliquent d'elles même)(je ne trouve d'ailleurs pas beaucoup d'intérêt aux IdKey: pourquoi ne pas faire: index + "-product" au lieu de: index + "-" + productIdKey) ===
 const MAX_QTY = 9;
@@ -85,7 +85,7 @@ var createOrderControlBlock = function (index) {
 	var control = document.createElement("div");
 	control.className = "controle";
 
-	// create input quantity element
+	// crée le champ input de control
 	var input = document.createElement("input");
 	input.id = index + '-' + inputIdKey;
 	input.type = "number";
@@ -93,25 +93,25 @@ var createOrderControlBlock = function (index) {
 	input.value = "0";
 	input.min = "0";
 	input.max = MAX_QTY.toString();
-
+	// définit l'écoute d'un changement de chiffre dans le champs input pour appeler gererChange
 	input.addEventListener("change",gererChange);
-	// add input to control as its child
+	// ajoute input à control
 	control.appendChild(input);
 	
-	// create order button
+	// crée le bouton d'ajout au panier
 	var button = document.createElement("button");
 	button.className = 'commander';
 	button.id = index + "-" + orderIdKey;
-	// add button to control as its child
+	// ajout du bouton à control
 	control.appendChild(button);
-	// fonctionnement du bouton
+	// définit l'écoute du click sur le bouton pour le faire fonctionner (appel de gererCommande)
 	button.addEventListener("click", gererCommande);
 	
-	// the built control div node is returned
+	// renvoie le div.control
 	return control;
 }
 
-// gestion de la quantité max qu'on peut taper dans le champs "(id du produit)-qte" et opacité si quantité différente de 0
+// gestion de la quantité max et min qu'on peut taper dans le champs "(id du produit)-qte" et opacité si quantité différente de 0
 var gererChange = function() {
 	var identifiant = this.id;
 	var qte= Number(this.value);
@@ -120,7 +120,6 @@ var gererChange = function() {
 		this.value=0;
 	}	
 	var index = identifiant.split("-")[0];
-
 	var bouton = document.getElementById(index + "-" + orderIdKey);
 	if (qte==0) {
 		bouton.style.opacity=0.25;
@@ -130,6 +129,39 @@ var gererChange = function() {
 	}
 }
 
+// gestion du clic (mise en panier) appelée par l'event click du bouton panier
+var gererCommande = function() {
+    var index = this.id.split("-")[0];
+    var input = document.getElementById(index + "-" + inputIdKey);
+    var qte = Number(input.value);
+	if (qte === 0) return;
+   	var product = catalog[index];
+   	var panier = document.getElementById("achats");
+   	var achatExistant = document.getElementById(index + "-achat");
+
+    // produit déjà dans le panier
+    if (achatExistant != null) {
+        var qteSpan = document.getElementById(index + "-achat-qte");
+        var prixSpan = document.getElementById(index + "-achat-prix");
+        var ancienneQte = Number(qteSpan.innerHTML);
+        var nouvelleQte = ancienneQte + qte;
+        qteSpan.innerHTML = nouvelleQte;
+            (nouvelleQte * product.price);
+        total += product.price * qte;
+    }
+    // nouveau produit
+    else {
+        panier.appendChild(createAchatBlock(product, index, qte));
+        total += product.price * qte;
+    }
+    // mise à jour affichage total
+    document.getElementById("montant").innerHTML =
+        total;
+    // reset quantité
+    input.value = 0;
+    this.style.opacity = 0.25;
+}
+// crée les 
 var createAchatBlock = function(product, index, qte) {
     var achat = document.createElement("div");
     achat.className = "achat";
@@ -167,39 +199,6 @@ var createAchatBlock = function(product, index, qte) {
     achat.appendChild(control);
 
     return achat;
-}
-
-// gestion du clic (mise en panier)
-var gererCommande = function() {
-    var index = this.id.split("-")[0];
-    var input = document.getElementById(index + "-" + inputIdKey);
-    var qte = Number(input.value);
-	if (qte === 0) return;
-   	var product = catalog[index];
-   	var panier = document.getElementById("achats");
-   	var achatExistant = document.getElementById(index + "-achat");
-
-    // produit déjà dans le panier
-    if (achatExistant != null) {
-        var qteSpan = document.getElementById(index + "-achat-qte");
-        var prixSpan = document.getElementById(index + "-achat-prix");
-        var ancienneQte = Number(qteSpan.innerHTML);
-        var nouvelleQte = ancienneQte + qte;
-        qteSpan.innerHTML = nouvelleQte;
-            (nouvelleQte * product.price);
-        total += product.price * qte;
-    }
-    // nouveau produit
-    else {
-        panier.appendChild(createAchatBlock(product, index, qte));
-        total += product.price * qte;
-    }
-    // mise à jour affichage total
-    document.getElementById("montant").innerHTML =
-        total;
-    // reset quantité
-    input.value = 0;
-    this.style.opacity = 0.25;
 }
 
 var gererSuppression = function() {
