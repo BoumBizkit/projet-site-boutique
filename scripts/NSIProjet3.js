@@ -2,6 +2,7 @@
 
 // === variables constantes (s'expliquent d'elles même)(je ne trouve d'ailleurs pas beaucoup d'intérêt aux IdKey: pourquoi ne pas faire: index + "-product" au lieu de: index + "-" + productIdKey) ===
 const MAX_QTY = 9;
+const BUDGET_MAX = 400;
 const productIdKey = "product";
 const orderIdKey = "order";
 const inputIdKey = "qte";
@@ -154,13 +155,14 @@ var gererCommande = function() {
         panier.appendChild(createAchatBlock(product, index, qte));
         total += product.price * qte;
     }
-    // mise à jour affichage total
-    document.getElementById("montant").innerHTML =
-        total;
+    // mise à jour affichage total et budget
+    document.getElementById("montant").innerHTML=total;
+	verifierBudget();
     // reset quantité
     input.value = 0;
     this.style.opacity = 0.25;
 }
+
 // crée les éléments dans le panier
 var createAchatBlock = function(product, index, qte) {
     var achat = document.createElement("div");
@@ -211,10 +213,27 @@ var gererSuppression = function() {
     var qte = Number(document.getElementById(index + "-achat-qte").innerHTML);
     var product = catalog[index];
     total -= product.price * qte;
+
+	// mise à jour affichage total et budget
     document.getElementById("montant").innerHTML = total;
+	verifierBudget();
     
     // supprimer le bloc du panier
     achat.remove();
+}
+
+// vérifie le budget
+var verifierBudget = function() {
+    var titre = document.getElementById("budget-titre");
+    if (total > BUDGET_MAX) {
+        titre.innerHTML = "Le budget de " + BUDGET_MAX + " euros est dépassé !";
+        titre.style.backgroundColor = "red";
+        titre.style.color = "white";
+    } else {
+        titre.innerHTML = "Le budget pour la classe est de " + BUDGET_MAX + " euros.";
+        titre.style.backgroundColor = "";
+        titre.style.color = "";
+    }
 }
 
 // créer le FigureBlock
