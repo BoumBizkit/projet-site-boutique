@@ -1,6 +1,6 @@
 // YNN ET MAYA L'ABEILLE TROUVEZ UN NOM FLEMME LA
 
-// === variables constantes (s'expliquent d'elles même) ===
+// === variables constantes (s'expliquent d'elles même)(je ne trouve d'ailleurs pas beaucoup d'intérêt aux IdKey: pourquoi ne pas faire: index + "-product" au lieu de: index + "-" + productIdKey) ===
 const MAX_QTY = 9;
 const productIdKey = "product";
 const orderIdKey = "order";
@@ -24,6 +24,7 @@ var init = function () {
 // appelle de l'init après le chargement de la page
 window.addEventListener("load", init);
 
+// FONCTIONS UTILES
 // fonction filtrer du champs "filter" appelée par keyup
 var filtrer = function() {
 	var filtre=this.value;
@@ -40,31 +41,7 @@ var filtrer = function() {
 	}
 }
 
-// gestion de la quantité max qu'on peut taper dans le champs "(id du produit)-qte" et opacité si quantité différente de 0
-var gererChange = function() {
-	var identifiant = this.id;
-	var qte= Number(this.value);
-	if (qte>9){
-		qte=0;
-		this.value=0;
-	}	
-	var index = identifiant.split("-")[0];
-
-	var bouton = document.getElementById(index + "-" + orderIdKey);
-	if (qte==0) {
-		bouton.style.opacity=0.25;
-	}
-	else {
-		bouton.style.opacity=1;
-	}
-}
-
-// usefull functions
-
-/*
-* create and add all the div.produit elements to the div#boutique element
-* according to the product objects that exist in 'catalog' variable
-*/
+// creation du shop appelée par l'init avec un parcours par indice qui appelle la création de chaque produit
 var createShop = function () {
 	var shop = document.getElementById("boutique");
 	for(var i = 0; i < catalog.length; i++) {
@@ -72,39 +49,28 @@ var createShop = function () {
 	}
 }
 
-/*
-* create the div.produit elment corresponding to the given product
-* The created element receives the id "index-product" where index is replaced by param's value
-* @param product (product object) = the product for which the element is created
-* @param index (int) = the index of the product in catalog, used to set the id of the created element
-*/
+// creation de produits avec plusieurs appels à des sous branches
 var createProduct = function (product, index) {
-	// build the div element for product
+	// creation du div
 	var block = document.createElement("div");
 	block.className = "produit";
-	// set the id for this product
+	// définit l'id du produit
 	block.id = index + "-" + productIdKey;
-	// build the h4 part of 'block'
+	// partie h4 de "block"
 	block.appendChild(createBlock("h4", product.name));
-	
-	// /!\ should add the figure of the product... does not work yet... /!\ 
+	// ajoutes le figure (image)
 	block.appendChild(createFigureBlock(product));
-
-	// build and add the div.description part of 'block' 
+	// crée et ajoute la partie div.description de "block"
 	block.appendChild(createBlock("div", product.description, "description"));
-	// build and add the div.price part of 'block'
+	// crée et ajoute la partie div.price de "block"
 	block.appendChild(createBlock("div", product.price, "prix"));
-	// build and add control div block to product element
+	// crée et ajoute la div.control de "block" 
 	block.appendChild(createOrderControlBlock(index));
 	return block;
 }
 
 
-/* return a new element of tag 'tag' with content 'content' and class 'cssClass'
- * @param tag (string) = the type of the created element (example : "p")
- * @param content (string) = the html wontent of the created element (example : "bla bla")
- * @param cssClass (string) (optional) = the value of the 'class' attribute for the created element
- */
+// fonction de création d'éléments html : elle crée un élément du type tag donné (ex: "div", "h4"), lui assigne éventuellement une classe CSS, et place le contenu dans son innerHTML (évite la répétition dans le code)
 var createBlock = function (tag, content, cssClass) {
 	var element = document.createElement(tag);
 	if (cssClass != undefined) {
@@ -114,13 +80,7 @@ var createBlock = function (tag, content, cssClass) {
 	return element;
 }
 
-/*
-* builds the control element (div.controle) for a product
-* @param index = the index of the considered product
-*
-* TODO : add the event handling, 
-*   /!\  in this version button and input do nothing  /!\  
-*/
+// crée le div.control d'un élément
 var createOrderControlBlock = function (index) {
 	var control = document.createElement("div");
 	control.className = "controle";
@@ -149,6 +109,25 @@ var createOrderControlBlock = function (index) {
 	
 	// the built control div node is returned
 	return control;
+}
+
+// gestion de la quantité max qu'on peut taper dans le champs "(id du produit)-qte" et opacité si quantité différente de 0
+var gererChange = function() {
+	var identifiant = this.id;
+	var qte= Number(this.value);
+	if (qte>9||qte<0){
+		qte=0;
+		this.value=0;
+	}	
+	var index = identifiant.split("-")[0];
+
+	var bouton = document.getElementById(index + "-" + orderIdKey);
+	if (qte==0) {
+		bouton.style.opacity=0.25;
+	}
+	else {
+		bouton.style.opacity=1;
+	}
 }
 
 var createAchatBlock = function(product, index, qte) {
