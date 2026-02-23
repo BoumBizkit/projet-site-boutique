@@ -161,7 +161,7 @@ var gererCommande = function() {
     input.value = 0;
     this.style.opacity = 0.25;
 }
-// crée les 
+// crée les éléments dans le panier
 var createAchatBlock = function(product, index, qte) {
     var achat = document.createElement("div");
     achat.className = "achat";
@@ -194,13 +194,15 @@ var createAchatBlock = function(product, index, qte) {
     var suppr = document.createElement("button");
     suppr.className = "retirer";
     suppr.id = index + "-remove";
+	// écoute sur le bouton pour gerer la suppression
 	suppr.addEventListener("click", gererSuppression);
     control.appendChild(suppr);
     achat.appendChild(control);
-
+	// renvoyer la div achat
     return achat;
 }
 
+// fonction supprimer
 var gererSuppression = function() {
     var index = this.id.split("-")[0];
     var achat = document.getElementById(index + "-achat");
