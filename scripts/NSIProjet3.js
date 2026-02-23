@@ -226,7 +226,7 @@ var gererSuppression = function() {
 var verifierBudget = function() {
     var titre = document.getElementById("budget-titre");
     if (total > BUDGET_MAX) {
-        titre.innerHTML = "Le budget de " + BUDGET_MAX + " euros est dépassé !";
+        titre.innerHTML = "⚠️ Le budget de " + BUDGET_MAX + " euros est dépassé !";
         titre.style.backgroundColor = "red";
         titre.style.color = "white";
     } else {
