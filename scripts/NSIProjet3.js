@@ -1,5 +1,3 @@
-// YANN ET MAYA L'ABEILLE TROUVEZ UN NOM DE GROUPE FLEMME LA
-
 // === variables constantes (s'expliquent d'elles même)(je ne trouve d'ailleurs pas beaucoup d'intérêt aux IdKey: pourquoi ne pas faire: index + "-product" au lieu de: index + "-" + productIdKey) ===
 const MAX_QTY = 9;
 const BUDGET_MAX = 400;
