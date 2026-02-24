@@ -146,11 +146,12 @@ var gererCommande = function() {
         var ancienneQte = Number(qteSpan.innerHTML);
         var nouvelleQte = ancienneQte + qte;
 		if (nouvelleQte > 9) {
+			var diff = nouvelleQte-9;
 			nouvelleQte = 9;
 		}
         qteSpan.innerHTML = nouvelleQte;
             (nouvelleQte * product.price);
-        total += product.price * qte;
+        total += product.price * qte - product.price * diff;
     }
     // nouveau produit
     else {
