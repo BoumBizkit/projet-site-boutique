@@ -147,6 +147,9 @@ var gererCommande = function() {
         var prixSpan = document.getElementById(index + "-achat-prix");
         var ancienneQte = Number(qteSpan.innerHTML);
         var nouvelleQte = ancienneQte + qte;
+		if (nouvelleQte > 9) {
+			nouvelleQte = 9;
+		}
         qteSpan.innerHTML = nouvelleQte;
             (nouvelleQte * product.price);
         total += product.price * qte;
